@@ -31,7 +31,6 @@ namespace Nato.PubSub
                 listener.Invoke(eventData);
             }
         }
-
     }
 
     public static class EventManager

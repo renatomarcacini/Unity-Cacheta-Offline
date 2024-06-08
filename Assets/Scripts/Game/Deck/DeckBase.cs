@@ -30,7 +30,7 @@ public class DeckBase : MonoBehaviour
             {
                 foreach (Card.VALUE value in System.Enum.GetValues(typeof(Card.VALUE)))
                 {
-                    if (value == Card.VALUE.NOTHING)
+                    if (value == Card.VALUE.NOTHING || value == Card.VALUE.JOKER)
                         continue;
                     Card card = Instantiate(cardPrefab.gameObject, offsetCard, transform.rotation).GetComponent<Card>();
                     card.Setup(suit, value, DeckData.Sprite_CardBack, DeckData.Sprites_CardFront[i]);

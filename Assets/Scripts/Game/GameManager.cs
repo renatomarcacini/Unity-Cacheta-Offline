@@ -21,6 +21,13 @@ public class GameManager : Singleton<GameManager>
 
     [field: SerializeField] public HandVisual WinnerHand { get; private set; }
 
+    protected override void Awake()
+    {
+        base.Awake();
+        Application.targetFrameRate = 60;
+    }
+
+
     private IEnumerator Start()
     {
         PurchaseDeck.MakeDeck(quantity: 2);
@@ -116,7 +123,7 @@ public class GameManager : Singleton<GameManager>
 
     private void OnDisable()
     {
-        EventManager<PlayerWonMatchEvent>.Subscribe(HandlePlayerWonMatch);
+        EventManager<PlayerWonMatchEvent>.Unsubscribe(HandlePlayerWonMatch);
     }
 
     private void HandlePlayerWonMatch(PlayerWonMatchEvent playerWonMatchEvent)

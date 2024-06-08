@@ -56,6 +56,18 @@ public class HandCheckerTest
                 CreateCard(Card.SUIT.CLUBS, Card.VALUE.TWO),
                 CreateCard(Card.SUIT.HEART, Card.VALUE.TWO),
                 CreateCard(Card.SUIT.DIAMONDS,  Card.VALUE.TWO)
+            },
+            new List<Card>()
+            {
+                CreateCard(Card.SUIT.SPADES, Card.VALUE.ACE),
+                CreateCard(Card.SUIT.SPADES, Card.VALUE.TWO),
+                CreateCard(Card.SUIT.SPADES, Card.VALUE.THREE),
+                CreateCard(Card.SUIT.HEART, Card.VALUE.JOKER),
+                CreateCard(Card.SUIT.SPADES, Card.VALUE.FOUR),
+                CreateCard(Card.SUIT.SPADES, Card.VALUE.FIVE),
+                CreateCard(Card.SUIT.SPADES, Card.VALUE.SIX),
+                CreateCard(Card.SUIT.CLUBS, Card.VALUE.TWO),
+                CreateCard(Card.SUIT.DIAMONDS,  Card.VALUE.JOKER)
             }
         };
 

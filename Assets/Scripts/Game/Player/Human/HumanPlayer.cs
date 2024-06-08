@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using static CardEvents;
 using static DiscardDeckEvents;
@@ -20,8 +21,7 @@ public class HumanPlayer : PlayerBase
     public override void DisableTurn()
     {
         base.DisableTurn();
-        for (int i = 0; i < Cards.Count; i++)
-            Cards[i].CanDiscardToDiscardDeck = false;
+        DisableCardsCanDiscard(Cards);
     }
 
     public void EnableDragCards()
@@ -30,10 +30,16 @@ public class HumanPlayer : PlayerBase
             card.CanDrag = true;
     }
 
-    public void DisableDragCards()
+    private void DisableDragCards(List<Card> cards)
     {
-        foreach (Card card in Cards)
+        foreach (Card card in cards)
             card.CanDrag = false;
+    }
+
+    private void DisableCardsCanDiscard(List<Card> cards)
+    {
+        for (int i = 0; i < cards.Count; i++)
+            cards[i].CanDiscardToDiscardDeck = false;
     }
 
     protected override void HandlePlayerGetCardFromDiscardDeck(PlayerGetCardFromDeckEvent playerGetCardFromDeckEvent)
@@ -67,7 +73,8 @@ public class HumanPlayer : PlayerBase
     protected override void HandlePlayerWonMatch(PlayerEvents.PlayerWonMatchEvent playerWonMatchEvent)
     {
         base.HandlePlayerWonMatch(playerWonMatchEvent);
-        DisableDragCards();
+        DisableCardsCanDiscard(playerWonMatchEvent.Cards);
+        DisableDragCards(playerWonMatchEvent.Cards);
     }
 }
 

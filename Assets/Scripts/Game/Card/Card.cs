@@ -15,7 +15,7 @@ public class Card : MonoBehaviour
 
     public enum VALUE
     {
-        ACE = 1, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, NOTHING = 0
+        ACE = 1, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, JOKER=-2, NOTHING = 0
     }
 
     public SUIT Suit;
