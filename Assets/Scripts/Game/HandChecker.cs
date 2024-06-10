@@ -159,49 +159,11 @@ public class HandChecker
 
     }
 
-    //public List<Group> GetGroupsByValue(List<Card> cards)
-    //{
-    //    var groups = new List<Group>();
-    //    var groupedByValue = cards.GroupBy(c => c.Value).ToList();
-
-    //    foreach (var group in groupedByValue)
-    //    {
-    //        if (group.Count() >= 3)
-    //        {
-    //            var trincaCandidates = group.ToList();
-    //            var validTrinca = new List<Card>();
-    //            var naipesUsados = new HashSet<Card.SUIT>();
-
-    //            foreach (var card in trincaCandidates)
-    //            {
-    //                if (validTrinca.Count < 3 && !naipesUsados.Contains(card.Suit))
-    //                {
-    //                    validTrinca.Add(card);
-    //                    naipesUsados.Add(card.Suit);
-    //                }
-    //            }
-
-    //            if (validTrinca.Count == 3)
-    //            {
-    //                var reaminingCards = cards.Except(validTrinca).ToList();
-    //                foreach (var card in reaminingCards)
-    //                {
-    //                    if (naipesUsados.Contains(card.Suit) && validTrinca.Any(c => c.Value == card.Value && c.Suit == card.Suit))
-    //                    {
-    //                        validTrinca.Add(card);
-    //                    }
-    //                }
-    //                groups.Add(new Group(GroupType.TRIPLES, validTrinca));
-    //            }
-    //        }
-    //    }
-
-    //    return groups;
-    //}
-
     public List<Group> GetGroupsByValue(List<Card> cards)
     {
         var groups = new List<Group>();
+        cards = cards.OrderBy(c => c.Value).ToList();
+
         var groupedByValue = cards.Where(c => c.Value != Card.VALUE.JOKER).GroupBy(c => c.Value).ToList();
         var jokers = cards.Where(c => c.Value == Card.VALUE.JOKER).ToList();
 
@@ -210,78 +172,42 @@ public class HandChecker
             if (group.Key == Card.VALUE.JOKER)
                 continue;
 
-            var trincaCandidates = group.ToList();
-            var validTrinca = new List<Card>();
-            var naipesUsados = new HashSet<Card.SUIT>();
+            var tripleCandidates = group.ToList();
+            var validTriples = new List<Card>();
+            var suitUseds = new HashSet<Card.SUIT>();
 
-            foreach (var card in trincaCandidates)
+            foreach (var card in tripleCandidates)
             {
-                if (validTrinca.Count < 3 && !naipesUsados.Contains(card.Suit))
+                if (validTriples.Count < 3 && !suitUseds.Contains(card.Suit))
                 {
-                    validTrinca.Add(card);
-                    naipesUsados.Add(card.Suit);
+                    validTriples.Add(card);
+                    suitUseds.Add(card.Suit);
                 }
             }
 
-            while (validTrinca.Count < 3 && jokers.Count > 0)
+            while (validTriples.Count < 3 && jokers.Count > 0)
             {
-                validTrinca.Add(jokers[0]);
+                validTriples.Add(jokers[0]);
                 jokers.RemoveAt(0);
             }
 
-            if (validTrinca.Count == 3)
+
+            if (validTriples.Count == 3)
             {
-                var remainingCards = cards.Except(validTrinca).ToList();
+                var remainingCards = cards.Except(validTriples).ToList();
                 foreach (var card in remainingCards)
                 {
-                    if (naipesUsados.Contains(card.Suit) && validTrinca.Any(c => c.Value == card.Value && c.Suit == card.Suit))
+                    if (suitUseds.Contains(card.Suit) && validTriples.Any(c => c.Value == card.Value && c.Suit == card.Suit))
                     {
-                        validTrinca.Add(card);
+                        validTriples.Add(card);
                     }
                 }
-                groups.Add(new Group(GroupType.TRIPLES, validTrinca));
+                groups.Add(new Group(GroupType.TRIPLES, validTriples));
             }
         }
 
         return groups;
     }
-
-
-    //private List<Group> GetGroupsBySequence(List<Card> cards)
-    //{
-    //    var groups = new List<Group>();
-    //    var cardsBySuit = cards.GroupBy(c => c.Suit);
-
-    //    foreach (var suitGroup in cardsBySuit)
-    //    {
-    //        var sortedCards = suitGroup.OrderBy(c => c.Value).ToList();
-    //        var sequence = new List<Card>();
-
-    //        for (int i = 0; i < sortedCards.Count; i++)
-    //        {
-    //            if (sequence.Count == 0 || sortedCards[i].Value == sequence.Last().Value + 1)
-    //            {
-    //                sequence.Add(sortedCards[i]);
-    //            }
-    //            else
-    //            {
-    //                if (sequence.Count >= 3)
-    //                {
-    //                    groups.Add(new Group(GroupType.SEQUENCE, new List<Card>(sequence)));
-    //                }
-    //                sequence.Clear();
-    //                sequence.Add(sortedCards[i]);
-    //            }
-    //        }
-
-    //        if (sequence.Count >= 3)
-    //        {
-    //            groups.Add(new Group(GroupType.SEQUENCE, sequence));
-    //        }
-    //    }
-
-    //    return groups;
-    //}
 
     public List<Group> GetGroupsBySequence(List<Card> cards)
     {
@@ -371,7 +297,7 @@ public class HandChecker
         }
         return false;
     }
-
+   
     private void DebugGroups(List<Group> group, List<Card> remainingCards)
     {
         for (int i = 0; i < group.Count; i++)

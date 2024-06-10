@@ -28,7 +28,8 @@ public class HumanPlayerVisual : PlayerVisualBase
 
     private void OnButtonKnockClicked()
     {
-        PlayerWonMatchEvent playerWonMatchEvent = new(player, player.Cards);
+        List<Card> winnerCards = player.HandChecker.GetWinnerCards(player.Cards);
+        PlayerWonMatchEvent playerWonMatchEvent = new(player, winnerCards);
         EventManager<PlayerWonMatchEvent>.Publish(playerWonMatchEvent);
     }
 

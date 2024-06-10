@@ -1,9 +1,5 @@
-using Nato.PubSub;
 using Nato.Singleton;
 using Nato.StateMachine;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class UIMenuStateManager : Singleton<UIMenuStateManager>
 {

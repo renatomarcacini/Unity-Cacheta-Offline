@@ -229,7 +229,7 @@ public class DeckBase : MonoBehaviour
         foreach (Card card in CardsInGame)
         {
             card.ShowCard = false;
-            //card.DisableOutline();
+            card.DisableOutline();
             card.gameObject.SetActive(true);
             Cards.Add(card);
         }
