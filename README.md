@@ -1,7 +1,7 @@
 # Unity Cacheta Offline
 
 <img src="https://s10.gifyu.com/images/SYiNA.gif"/>
-Cacheta Offline is a popular card game in Latin America. This repository was created as a template to demonstrate the application of various common patterns in game development with Unity 3D. Additionally, it includes a basic example of implementing the Unity Test Framework.
+Cacheta is a popular card game in Latin America. This repository was created as a template to demonstrate the application of various common patterns in game development with Unity 3D. Additionally, it includes a basic example of implementing the Unity Test Framework.
 
 The patterns used in this project are:
 
