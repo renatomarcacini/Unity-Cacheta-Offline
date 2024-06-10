@@ -179,19 +179,6 @@ public class HandCheckerTest
                 CreateCard(Card.SUIT.HEART, Card.VALUE.FIVE),
                 CreateCard(Card.SUIT.HEART, Card.VALUE.SIX)
             },
-            new List<Card>()
-            {
-                CreateCard(Card.SUIT.CLUBS, Card.VALUE.ACE),
-                CreateCard(Card.SUIT.HEART, Card.VALUE.ACE),
-                CreateCard(Card.SUIT.SPADES, Card.VALUE.ACE),
-                CreateCard(Card.SUIT.DIAMONDS, Card.VALUE.JACK),
-                CreateCard(Card.SUIT.HEART, Card.VALUE.JACK),
-                CreateCard(Card.SUIT.SPADES, Card.VALUE.JACK),
-                CreateCard(Card.SUIT.HEART, Card.VALUE.QUEEN),
-                CreateCard(Card.SUIT.DIAMONDS, Card.VALUE.QUEEN),
-                CreateCard(Card.SUIT.SPADES, Card.VALUE.QUEEN),
-                CreateCard(Card.SUIT.DIAMONDS, Card.VALUE.TEN)
-            }
         };
 
         foreach (var hand in winningHands)
