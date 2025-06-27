@@ -1,6 +1,6 @@
 # Unity Cacheta Offline
+[[Gameplay video]](https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7205990112206163969?compact=1)
 
-<img src="https://s10.gifyu.com/images/SYiNA.gif"/>
 Cacheta is a popular card game in Latin America. This repository was created as a template to demonstrate the application of various common patterns in game development with Unity 3D. Additionally, it includes a basic example of implementing the Unity Test Framework.
 
 The patterns used in this project are:
